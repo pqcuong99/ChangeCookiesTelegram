@@ -41,5 +41,28 @@ namespace ChangeCookieTelegram.controller
                 return Array.Empty<string>(); // Trả về mảng rỗng nếu có lỗi
             }
         }
+        public static void ClearTextInFile(string filePath)
+        {
+            try
+            {
+                // Xóa nội dung của file
+                File.WriteAllText(filePath, string.Empty);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        public static void TextInFile(string filePath, string text)
+        {
+            try
+            {
+                // Xóa nội dung của file
+                File.WriteAllText(filePath, string.Empty);
+                File.WriteAllText(filePath, text);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

@@ -32,19 +32,22 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.rtcLog = new System.Windows.Forms.RichTextBox();
+            this.lbTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPathFolder
             // 
-            this.txtPathFolder.Location = new System.Drawing.Point(77, 25);
+            this.txtPathFolder.Location = new System.Drawing.Point(84, 12);
             this.txtPathFolder.Multiline = true;
             this.txtPathFolder.Name = "txtPathFolder";
             this.txtPathFolder.Size = new System.Drawing.Size(316, 32);
             this.txtPathFolder.TabIndex = 0;
+            this.txtPathFolder.Text = "F:\\Game _Telegram\\Tool-Change-csharp\\ChangeCookiesTelegram\\ChangeCookieTelegram\\b" +
+    "in\\Debug\\UrlGameTele.txt";
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(12, 25);
+            this.btnSelect.Location = new System.Drawing.Point(19, 12);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(59, 32);
             this.btnSelect.TabIndex = 1;
@@ -54,7 +57,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(399, 25);
+            this.btnStart.Location = new System.Drawing.Point(406, 12);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(93, 34);
             this.btnStart.TabIndex = 2;
@@ -69,12 +72,22 @@
             this.rtcLog.Size = new System.Drawing.Size(474, 273);
             this.rtcLog.TabIndex = 3;
             this.rtcLog.Text = "";
+            this.rtcLog.TextChanged += new System.EventHandler(this.rtcLog_TextChanged);
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Location = new System.Drawing.Point(405, 55);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(0, 13);
+            this.lbTime.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 361);
+            this.Controls.Add(this.lbTime);
             this.Controls.Add(this.rtcLog);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnSelect);
@@ -93,6 +106,7 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.RichTextBox rtcLog;
+        private System.Windows.Forms.Label lbTime;
     }
 }
 

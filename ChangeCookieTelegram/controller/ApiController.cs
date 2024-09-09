@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ChangeCookieTelegram.model;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,10 @@ namespace ChangeCookieTelegram.controller
         public static readonly HttpClient httpClient = new HttpClient();
         public static string author = "";
         public static string idFile = "";
-        public HttpRequestMessage HeaderRequest(string url)
+        public HttpRequestMessage HeaderRequest(string url, string type = "get")
         {
             //var request = new HttpRequestMessage(HttpMethod.Post, "https://cdn.hidemium.com/v4/file/upload");
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
+            var request = new HttpRequestMessage(type == "get" ? HttpMethod.Get : HttpMethod.Post, url);
             request.Headers.Add("authority", "cdn.hidemium.com");
             request.Headers.Add("accept", "application/json, text/plain, */*");
             request.Headers.Add("accept-language", "en-US");
@@ -50,20 +51,21 @@ namespace ChangeCookieTelegram.controller
             request.Headers.Add("sec-ch-ua-platform", "\"Windows\"");
             return request;
         }
-        public async Task<string> PostUploadFile(string contentUpload)
+        public async Task<string> PostUploadFile(BodyUpload body)
         {
             string url = "https://cdn.hidemium.com/v4/file/upload";
-            var request = HeaderRequest(url);
+            var request = HeaderRequest(url,"post");
 
             var content = new MultipartFormDataContent();
-            content.Add(new StringContent(contentUpload), "file_content");
+            content.Add(new StringContent(JsonConvert.SerializeObject(body)), "file_content");
             content.Add(new StringContent(idFile), "file_id");
 
             request.Content = content;
             var response = await httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();
+            string res = await response.Content.ReadAsStringAsync();
+            return res;
         }
         public async Task<string> GetSchedule()
         {
@@ -73,7 +75,8 @@ namespace ChangeCookieTelegram.controller
             var response = await httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();
+            string res = await response.Content.ReadAsStringAsync();
+            return res;
         }
         public async Task<string> GetWorkLogSchedule(int id)
         {
@@ -91,7 +94,8 @@ namespace ChangeCookieTelegram.controller
             var response = await httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();
+            string res = await response.Content.ReadAsStringAsync();
+            return res;
         }
     }
 }
