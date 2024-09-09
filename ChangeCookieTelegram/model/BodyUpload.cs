@@ -13,12 +13,12 @@ namespace ChangeCookieTelegram.model
         public object[] tomarket { get; set; }
         public object[] goldminer { get; set; }
         public object[] kuroro { get; set; }
-        public object[] okx { get; set; }
+        public object[] mozoai { get; set; }
         public object[] capybara { get; set; }
         public object[] pokey { get; set; }
         public object[] banana { get; set; }
         public object[] ava { get; set; }
-        public object[] tonrain { get; set; }
+        public object[] iamdog { get; set; }
         public object[] won { get; set; }
         public object[] tontab { get; set; }
         public object[] kaiaplay { get; set; }

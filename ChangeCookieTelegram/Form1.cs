@@ -78,12 +78,11 @@ namespace ChangeCookieTelegram
                 List<string> listTomerket = new List<string>();
                 List<string> listGoldMiner = new List<string>();
                 List<string> listKuroro = new List<string>();
-                List<string> listOkx = new List<string>();
-                List<string> listOnus = new List<string>();
+                List<string> listMozoAi = new List<string>();
                 List<string> listPokey = new List<string>();
                 List<string> listBanana = new List<string>();
                 List<string> listAva = new List<string>();
-                List<string> listTonrain = new List<string>();
+                List<string> listIamDog = new List<string>();
                 List<string> listWon = new List<string>();
                 List<string> listTontab = new List<string>();
                 List<string> listKaiaPlay = new List<string>();
@@ -138,9 +137,9 @@ namespace ChangeCookieTelegram
                         {
                             listKuroro.Add(RegexCookies.RegexAuth(item[1].Trim(), "kuroro"));
                         }
-                        else if (item[0].Contains("okx"))
+                        else if (item[0].Contains("mozoai"))
                         {
-                            listOkx.Add(RegexCookies.RegexAuth(item[1].Trim(), "okx"));
+                            listMozoAi.Add(RegexCookies.RegexAuth(item[1].Trim(), "mozoai"));
                         }
                         else if (item[0].Contains("pokey"))
                         {
@@ -158,9 +157,9 @@ namespace ChangeCookieTelegram
                         {
                             listAva.Add(RegexCookies.RegexAuth(item[1].Trim(), "ava"));
                         }
-                        else if (item[0].Contains("tonrain"))
+                        else if (item[0].Contains("iamdog"))
                         {
-                            listTonrain.Add(RegexCookies.RegexAuth(item[1].Trim(), "tonrain"));
+                            listIamDog.Add(RegexCookies.RegexAuth(item[1].Trim(), "iamdog"));
                         }
                         else if (item[0].Contains("won"))
                         {
@@ -193,12 +192,12 @@ namespace ChangeCookieTelegram
                     body.tomarket = listTomerket.ToArray();
                     body.goldminer = listGoldMiner.ToArray();
                     body.kuroro = listKuroro.ToArray();
-                    body.okx = listOkx.ToArray();
+                    body.mozoai = listMozoAi.ToArray();
                     body.capybara = listCapybara.ToArray();
                     body.pokey = listPokey.ToArray();
                     body.banana = listBanana.ToArray();
                     body.ava = listAva.ToArray();
-                    body.tonrain = listTonrain.ToArray();
+                    body.iamdog = listIamDog.ToArray();
                     body.won = listWon.ToArray();
                     body.tontab = listTontab.ToArray();
                     body.kaiaplay = listKaiaPlay.ToArray();
