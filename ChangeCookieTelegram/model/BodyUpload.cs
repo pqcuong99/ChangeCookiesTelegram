@@ -11,7 +11,7 @@ namespace ChangeCookieTelegram.model
         public object[] midas { get; set; }
         public object[] rockyrabbit { get; set; }
         public object[] tomarket { get; set; }
-        public object[] goldminer { get; set; }
+        public object[] lumoz { get; set; }
         public object[] kuroro { get; set; }
         public object[] mozoai { get; set; }
         public object[] capybara { get; set; }
@@ -20,7 +20,7 @@ namespace ChangeCookieTelegram.model
         public object[] ava { get; set; }
         public object[] iamdog { get; set; }
         public object[] won { get; set; }
-        public object[] tontab { get; set; }
+        public object[] vanilla { get; set; }
         public object[] kaiaplay { get; set; }
         public object[] blum { get; set; }
         public object[] matchquest { get; set; }

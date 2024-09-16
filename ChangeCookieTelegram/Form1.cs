@@ -76,7 +76,7 @@ namespace ChangeCookieTelegram
                 List<string> listRabbit = new List<string>();
                 List<string> listMidas = new List<string>();
                 List<string> listTomerket = new List<string>();
-                List<string> listGoldMiner = new List<string>();
+                List<string> listLumoz = new List<string>();
                 List<string> listKuroro = new List<string>();
                 List<string> listMozoAi = new List<string>();
                 List<string> listPokey = new List<string>();
@@ -84,7 +84,7 @@ namespace ChangeCookieTelegram
                 List<string> listAva = new List<string>();
                 List<string> listIamDog = new List<string>();
                 List<string> listWon = new List<string>();
-                List<string> listTontab = new List<string>();
+                List<string> listVanilla = new List<string>();
                 List<string> listKaiaPlay = new List<string>();
                 List<string> listBlum = new List<string>();
                 List<string> listMatchQuest = new List<string>();
@@ -101,7 +101,7 @@ namespace ChangeCookieTelegram
                 string[] arrayCookies = FileHelperController.ReadAllLines(txtPathFolder.Text.Trim());
                 bool isCheck = await IsCheckScheduleStatus();
                 LogMessage($"Check data ====>  count : {arrayCookies.Length} | isCheck : {isCheck}", isCheck == true ? "success" :"error");
-                if (arrayCookies.Length > 10 && isCheck == true)
+                if (arrayCookies.Length > 120 && isCheck == true)
                 {
                     var arrayPath = path.Split('\\');
                     string pathCopy = "";
@@ -129,9 +129,9 @@ namespace ChangeCookieTelegram
                         {
                             listTomerket.Add(RegexCookies.RegexAuth(item[1].Trim(), "tomarket"));
                         }
-                        else if (item[0].Contains("goldminer"))
+                        else if (item[0].Contains("lumoz"))
                         {
-                            listGoldMiner.Add(RegexCookies.RegexAuth(item[1].Trim(), "goldminer"));
+                            listLumoz.Add(RegexCookies.RegexAuth(item[1].Trim(), "lumoz"));
                         }
                         else if (item[0].Contains("kuroro"))
                         {
@@ -165,9 +165,9 @@ namespace ChangeCookieTelegram
                         {
                             listWon.Add(RegexCookies.RegexAuth(item[1].Trim(), "won"));
                         }
-                        else if (item[0].Contains("tontab"))
+                        else if (item[0].Contains("vanilla"))
                         {
-                            listTontab.Add(RegexCookies.RegexAuth(item[1].Trim(), "tontab"));
+                            listVanilla.Add(RegexCookies.RegexAuth(item[1].Trim(), "vanilla"));
                         }
                         else if (item[0].Contains("kaiaplay"))
                         {
@@ -190,7 +190,7 @@ namespace ChangeCookieTelegram
                     body.rockyrabbit = listRabbit.ToArray();
                     body.midas = listMidas.ToArray();
                     body.tomarket = listTomerket.ToArray();
-                    body.goldminer = listGoldMiner.ToArray();
+                    body.lumoz = listLumoz.ToArray();
                     body.kuroro = listKuroro.ToArray();
                     body.mozoai = listMozoAi.ToArray();
                     body.capybara = listCapybara.ToArray();
@@ -199,7 +199,7 @@ namespace ChangeCookieTelegram
                     body.ava = listAva.ToArray();
                     body.iamdog = listIamDog.ToArray();
                     body.won = listWon.ToArray();
-                    body.tontab = listTontab.ToArray();
+                    body.vanilla = listVanilla.ToArray();
                     body.kaiaplay = listKaiaPlay.ToArray();
                     body.blum = listBlum.ToArray();
                     body.matchquest = listMatchQuest.ToArray();
