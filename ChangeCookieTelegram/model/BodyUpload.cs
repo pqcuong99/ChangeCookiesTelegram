@@ -6,18 +6,25 @@ using System.Threading.Tasks;
 
 namespace ChangeCookieTelegram.model
 {
-    public class BodyUpload
+    public class BodyUpload_30
+    {
+        public object[] kuroro { get; set; }
+        public object[] pokey { get; set; }
+        public object[] ava { get; set; }
+    }
+    public class BodyUpload_60
+    {
+        
+    }
+    public class BodyUpload_120
     {
         public object[] midas { get; set; }
         public object[] rockyrabbit { get; set; }
         public object[] tomarket { get; set; }
         public object[] lumoz { get; set; }
-        public object[] kuroro { get; set; }
         public object[] mozoai { get; set; }
         public object[] capybara { get; set; }
-        public object[] pokey { get; set; }
         public object[] banana { get; set; }
-        public object[] ava { get; set; }
         public object[] iamdog { get; set; }
         public object[] won { get; set; }
         public object[] vanilla { get; set; }
@@ -26,8 +33,5 @@ namespace ChangeCookieTelegram.model
         public object[] matchquest { get; set; }
         public object[] major { get; set; }
     }
-    public class StatusCheck
-    {
-        public bool status { get; set; }
-    }
+    
 }

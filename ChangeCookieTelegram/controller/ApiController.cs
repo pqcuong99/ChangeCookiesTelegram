@@ -15,7 +15,23 @@ namespace ChangeCookieTelegram.controller
     {
         public static readonly HttpClient httpClient = new HttpClient();
         public static string author = "";
-        public static string idFile = "";
+        //{
+        //    "type": "success",
+        //    "title": "Create success",
+        //    "content": {
+        //        "id": 32,
+        //        "url": "https:\/\/cdn.hidemium.com\/hidemium\/202407\/50c7588a980aa0bbe6a8588bda5d08c4.js"
+        //    }
+        //}
+
+        //{ https://cdn.hidemium.com/hidemium/202408/890248a6b26407c2dae982a61bdefb0f.js
+        //    "type": "success",
+        //    "title": "Create success",
+        //    "content": {
+        //        "id": 76,
+        //        "url": "https:\/\/cdn.hidemium.com\/hidemium\/202408\/890248a6b26407c2dae982a61bdefb0f.js"
+        //    }
+        //}
         public HttpRequestMessage HeaderRequest(string url, string type = "get")
         {
             //var request = new HttpRequestMessage(HttpMethod.Post, "https://cdn.hidemium.com/v4/file/upload");
@@ -51,14 +67,30 @@ namespace ChangeCookieTelegram.controller
             request.Headers.Add("sec-ch-ua-platform", "\"Windows\"");
             return request;
         }
-        public async Task<string> PostUploadFile(BodyUpload body)
+        public async Task<string> PostUploadFile_30(BodyUpload_30 body)
+        {
+            string url = "https://cdn.hidemium.com/v4/file/upload";
+            var request = HeaderRequest(url, "post");
+
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(JsonConvert.SerializeObject(body)), "file_content");
+            content.Add(new StringContent("76"), "file_id");
+
+            request.Content = content;
+            var response = await httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            string res = await response.Content.ReadAsStringAsync();
+            return res;
+        }
+        public async Task<string> PostUploadFile_120(BodyUpload_120 body)
         {
             string url = "https://cdn.hidemium.com/v4/file/upload";
             var request = HeaderRequest(url,"post");
 
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(JsonConvert.SerializeObject(body)), "file_content");
-            content.Add(new StringContent(idFile), "file_id");
+            content.Add(new StringContent("32"), "file_id");
 
             request.Content = content;
             var response = await httpClient.SendAsync(request);
