@@ -104,6 +104,7 @@ namespace ChangeCookieTelegram
                 List<string> listMatchQuest = new List<string>();
                 List<string> listMajor = new List<string>();
                 List<string> listCapybara = new List<string>();
+                List<string> listTsubasa = new List<string>();
                 BodyUpload_120 body = new BodyUpload_120();
 
                 string path = txtPathFolder.Text.Trim();
@@ -112,7 +113,7 @@ namespace ChangeCookieTelegram
                     path = "C:\\Users\\Xoai\\Documents\\UrlGameTele.txt";
                 }
 
-                string[] arrayCookies = FileHelperController.ReadAllLines(txtPathFolder.Text.Trim());
+                string[] arrayCookies = FileHelperController.ReadAllLines(path);
                 bool isCheck = await IsCheckScheduleStatus();
                 LogMessage($"Check data ====>  count : {arrayCookies.Length} | isCheck : {isCheck}", isCheck == true ? "success" :"error");
                 if (arrayCookies.Length > 100 && isCheck == true)
@@ -189,6 +190,9 @@ namespace ChangeCookieTelegram
                         else if (item[0].Contains("major"))
                         {
                             listMajor.Add(RegexCookies.RegexAuth(item[1].Trim(), "major"));
+                        }else if (item[0].Contains("tsubasa"))
+                        {
+                            listTsubasa.Add(RegexCookies.RegexAuth(item[1].Trim(), "tsubasa"));
                         }
                     }
 
@@ -206,6 +210,7 @@ namespace ChangeCookieTelegram
                     body.blum = listBlum.ToArray();
                     body.matchquest = listMatchQuest.ToArray();
                     body.major = listMajor.ToArray();
+                    body.tsubasa = listTsubasa.ToArray();
 
                     ApiController api = new ApiController();
                     string result = await api.PostUploadFile_120(body);
