@@ -37,6 +37,8 @@ namespace ChangeCookieTelegram.model
         public object[] matchquest { get; set; }
         public object[] major { get; set; }
         public object[] tsubasa { get; set; }
+        public object[] freedogs { get; set; }
+        public object[] avacoin { get; set; }
     }
     
 }

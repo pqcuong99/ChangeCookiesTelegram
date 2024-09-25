@@ -105,6 +105,8 @@ namespace ChangeCookieTelegram
                 List<string> listMajor = new List<string>();
                 List<string> listCapybara = new List<string>();
                 List<string> listTsubasa = new List<string>();
+                List<string> listFreedogs = new List<string>();
+                List<string> listAvaCoin = new List<string>();
                 BodyUpload_120 body = new BodyUpload_120();
 
                 string path = txtPathFolder.Text.Trim();
@@ -193,6 +195,12 @@ namespace ChangeCookieTelegram
                         }else if (item[0].Contains("tsubasa"))
                         {
                             listTsubasa.Add(RegexCookies.RegexAuth(item[1].Trim(), "tsubasa"));
+                        }else if (item[0].Contains("freedogs"))
+                        {
+                            listFreedogs.Add(RegexCookies.RegexAuth(item[1].Trim(), "freedogs"));
+                        }else if (item[0].Contains("avacoin"))
+                        {
+                            listAvaCoin.Add(RegexCookies.RegexAuth(item[1].Trim(), "avacoin"));
                         }
                     }
 
@@ -211,6 +219,8 @@ namespace ChangeCookieTelegram
                     body.matchquest = listMatchQuest.ToArray();
                     body.major = listMajor.ToArray();
                     body.tsubasa = listTsubasa.ToArray();
+                    body.freedogs = listFreedogs.ToArray();
+                    body.avacoin = listAvaCoin.ToArray();
 
                     ApiController api = new ApiController();
                     string result = await api.PostUploadFile_120(body);
