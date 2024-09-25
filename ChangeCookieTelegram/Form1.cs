@@ -232,6 +232,10 @@ namespace ChangeCookieTelegram
                 List<string> listKuroro = new List<string>();
                 List<string> listPokey = new List<string>();
                 List<string> listAva = new List<string>();
+                List<string> listGumart = new List<string>();
+                List<string> listMoonbix = new List<string>();
+                List<string> listFastmint = new List<string>();
+                List<string> listCoinsweeper = new List<string>();
                 BodyUpload_30 body = new BodyUpload_30();
 
                 string path = txtPathFolder.Text.Trim();
@@ -270,12 +274,28 @@ namespace ChangeCookieTelegram
                         else if (item[0].Contains("ava"))
                         {
                             listAva.Add(RegexCookies.RegexAuth(item[1].Trim(), "ava"));
+                        }else if (item[0].Contains("gumart"))
+                        {
+                            listGumart.Add(RegexCookies.RegexAuth(item[1].Trim(), "gumart"));
+                        }else if (item[0].Contains("moonbix"))
+                        {
+                            listMoonbix.Add(RegexCookies.RegexAuth(item[1].Trim(), "moonbix"));
+                        }else if (item[0].Contains("fastmint"))
+                        {
+                            listFastmint.Add(RegexCookies.RegexAuth(item[1].Trim(), "fastmint"));
+                        }else if (item[0].Contains("coinsweeper"))
+                        {
+                            listCoinsweeper.Add(RegexCookies.RegexAuth(item[1].Trim(), "coinsweeper"));
                         }
                     }
 
                     body.kuroro = listKuroro.ToArray();
                     body.pokey = listPokey.ToArray();
                     body.ava = listAva.ToArray();
+                    body.gumart = listGumart.ToArray();
+                    body.moonbix = listMoonbix.ToArray();
+                    body.fastmint = listFastmint.ToArray();
+                    body.coinsweeper = listCoinsweeper.ToArray();
                     
                     ApiController api = new ApiController();
                     string result = await api.PostUploadFile_30(body);
