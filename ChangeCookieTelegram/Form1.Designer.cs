@@ -33,9 +33,6 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.rtcLog = new System.Windows.Forms.RichTextBox();
             this.lbTime = new System.Windows.Forms.Label();
-            this.cb30phut = new System.Windows.Forms.CheckBox();
-            this.cb60phut = new System.Windows.Forms.CheckBox();
-            this.cb120phut = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtPathFolder
@@ -45,8 +42,6 @@
             this.txtPathFolder.Name = "txtPathFolder";
             this.txtPathFolder.Size = new System.Drawing.Size(316, 32);
             this.txtPathFolder.TabIndex = 0;
-            this.txtPathFolder.Text = "D:\\GameTele\\ToolCsharp\\ChangeCookiesTelegram\\ChangeCookieTelegram\\bin\\Debug\\UrlGa" +
-    "meTele.txt";
             // 
             // btnSelect
             // 
@@ -70,9 +65,9 @@
             // 
             // rtcLog
             // 
-            this.rtcLog.Location = new System.Drawing.Point(19, 100);
+            this.rtcLog.Location = new System.Drawing.Point(19, 60);
             this.rtcLog.Name = "rtcLog";
-            this.rtcLog.Size = new System.Drawing.Size(474, 273);
+            this.rtcLog.Size = new System.Drawing.Size(474, 244);
             this.rtcLog.TabIndex = 3;
             this.rtcLog.Text = "";
             this.rtcLog.TextChanged += new System.EventHandler(this.rtcLog_TextChanged);
@@ -85,47 +80,11 @@
             this.lbTime.Size = new System.Drawing.Size(0, 13);
             this.lbTime.TabIndex = 4;
             // 
-            // cb30phut
-            // 
-            this.cb30phut.AutoSize = true;
-            this.cb30phut.Location = new System.Drawing.Point(85, 60);
-            this.cb30phut.Name = "cb30phut";
-            this.cb30phut.Size = new System.Drawing.Size(62, 17);
-            this.cb30phut.TabIndex = 5;
-            this.cb30phut.Text = "30 phút";
-            this.cb30phut.UseVisualStyleBackColor = true;
-            this.cb30phut.CheckedChanged += new System.EventHandler(this.cb30phut_CheckedChanged);
-            // 
-            // cb60phut
-            // 
-            this.cb60phut.AutoSize = true;
-            this.cb60phut.Location = new System.Drawing.Point(171, 60);
-            this.cb60phut.Name = "cb60phut";
-            this.cb60phut.Size = new System.Drawing.Size(62, 17);
-            this.cb60phut.TabIndex = 6;
-            this.cb60phut.Text = "60 phút";
-            this.cb60phut.UseVisualStyleBackColor = true;
-            this.cb60phut.CheckedChanged += new System.EventHandler(this.cb60phut_CheckedChanged);
-            // 
-            // cb120phut
-            // 
-            this.cb120phut.AutoSize = true;
-            this.cb120phut.Location = new System.Drawing.Point(275, 60);
-            this.cb120phut.Name = "cb120phut";
-            this.cb120phut.Size = new System.Drawing.Size(58, 17);
-            this.cb120phut.TabIndex = 7;
-            this.cb120phut.Text = "2 tiếng";
-            this.cb120phut.UseVisualStyleBackColor = true;
-            this.cb120phut.CheckedChanged += new System.EventHandler(this.cb120phut_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 385);
-            this.Controls.Add(this.cb120phut);
-            this.Controls.Add(this.cb60phut);
-            this.Controls.Add(this.cb30phut);
+            this.ClientSize = new System.Drawing.Size(515, 318);
             this.Controls.Add(this.lbTime);
             this.Controls.Add(this.rtcLog);
             this.Controls.Add(this.btnStart);
@@ -146,9 +105,6 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.RichTextBox rtcLog;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.CheckBox cb30phut;
-        private System.Windows.Forms.CheckBox cb60phut;
-        private System.Windows.Forms.CheckBox cb120phut;
     }
 }
 

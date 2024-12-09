@@ -23,9 +23,18 @@ namespace ChangeCookieTelegram
         System.Threading.Timer timer;
         TimeSpan remainingTime = TimeSpan.FromMinutes(10);
         string type = "30phut";
+        string folderProfile = "";
         public Form1()
         {
             InitializeComponent();
+        }
+        public Form1(string dataSave)
+        {
+            InitializeComponent();
+            var data = dataSave.Split('|');
+            txtPathFolder.Text = data[0];
+            type = data[2] == "30" ? "30phut" : "120phut";
+            folderProfile = data[1];
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -37,6 +46,7 @@ namespace ChangeCookieTelegram
         {
             try
             {
+                StartDeleteFileDLB();
                 StartChange();
             }
             catch(Exception ex)
@@ -44,6 +54,48 @@ namespace ChangeCookieTelegram
 
             }
 
+        }
+        public void StartDeleteFileDLB()
+        {
+            LogMessage("------------- Check and Delete file DLB ----------");
+            if (!Directory.Exists(folderProfile))
+            {
+                return;
+            }
+            string[] subFolders = Directory.GetDirectories(folderProfile);
+            // Duyệt qua tất cả các thư mục con
+            foreach (var folder in subFolders)
+            {
+                string folderDefault = folder + "\\Default";
+                if(Directory.Exists(folderDefault + "\\IndexedDB"))
+                {
+                    string folderDB = folderDefault + "\\IndexedDB";
+                    string[] subFoldersDB = Directory.GetDirectories(folderDB);
+
+                    // Duyệt qua tất cả các thư mục con
+                    foreach (var itemDB in subFoldersDB)
+                    {
+                        if (itemDB.Contains("web.telegram.org"))
+                        {
+                            string[] dlbFiles = Directory.GetFiles(itemDB, "*.ldb");
+
+                            // Duyệt qua từng file .dlb và xóa
+                            foreach (var file in dlbFiles)
+                            {
+                                try
+                                {
+                                    LogMessage("Delete file: " + file, "success");
+                                    // Xóa file .dlb
+                                    File.Delete(file);
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         public  string TypeCheck()
         {
@@ -332,10 +384,14 @@ namespace ChangeCookieTelegram
         }
         public void ShowTimeOut(string time)
         {
-            Invoke(new MethodInvoker(() =>
+            try
             {
-                lbTime.Text = time;
-            }));
+                Invoke(new MethodInvoker(() =>
+                {
+                    lbTime.Text = time;
+                }));
+            }
+            catch(Exception ex) { }
         }
         public async Task<bool> IsCheckScheduleStatus()
         {
@@ -375,9 +431,6 @@ namespace ChangeCookieTelegram
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cb30phut.Checked = true;
-            cb60phut.Checked = false;
-            cb120phut.Checked = false;
             string pathLocal  = Directory.GetCurrentDirectory();
             string[] token = FileHelperController.ReadAllLines(pathLocal + "\\token.txt");
             ApiController.author = token[0];
@@ -418,75 +471,5 @@ namespace ChangeCookieTelegram
             rtcLog.ScrollToCaret();
         }
 
-        #region Xử lý sự kiện checkbox
-        private void cb30phut_CheckedChanged(object sender, EventArgs e)
-        {
-            cb30phut.CheckedChanged -= cb30phut_CheckedChanged;
-            cb60phut.CheckedChanged -= cb60phut_CheckedChanged;
-            cb120phut.CheckedChanged -= cb120phut_CheckedChanged;
-
-            try
-            {
-                // Thay đổi trạng thái của các checkbox
-                cb30phut.Checked = true;
-                cb60phut.Checked = false;
-                cb120phut.Checked = false;
-                type = "30phut";
-            }
-            finally
-            {
-                // Bật lại sự kiện CheckedChanged
-                cb30phut.CheckedChanged += cb30phut_CheckedChanged;
-                cb60phut.CheckedChanged += cb60phut_CheckedChanged;
-                cb120phut.CheckedChanged += cb120phut_CheckedChanged;
-            }
-        }
-
-        private void cb60phut_CheckedChanged(object sender, EventArgs e)
-        {
-            cb30phut.CheckedChanged -= cb30phut_CheckedChanged;
-            cb60phut.CheckedChanged -= cb60phut_CheckedChanged;
-            cb120phut.CheckedChanged -= cb120phut_CheckedChanged;
-
-            try
-            {
-                // Thay đổi trạng thái của các checkbox
-                cb30phut.Checked = false;
-                cb60phut.Checked = true;
-                cb120phut.Checked = false;
-                type = "60phut";
-            }
-            finally
-            {
-                // Bật lại sự kiện CheckedChanged
-                cb30phut.CheckedChanged += cb30phut_CheckedChanged;
-                cb60phut.CheckedChanged += cb60phut_CheckedChanged;
-                cb120phut.CheckedChanged += cb120phut_CheckedChanged;
-            }
-        }
-
-        private void cb120phut_CheckedChanged(object sender, EventArgs e)
-        {
-            cb30phut.CheckedChanged -= cb30phut_CheckedChanged;
-            cb60phut.CheckedChanged -= cb60phut_CheckedChanged;
-            cb120phut.CheckedChanged -= cb120phut_CheckedChanged;
-
-            try
-            {
-                // Thay đổi trạng thái của các checkbox
-                cb30phut.Checked = false;
-                cb60phut.Checked = false;
-                cb120phut.Checked = true;
-                type = "120phut";
-            }
-            finally
-            {
-                // Bật lại sự kiện CheckedChanged
-                cb30phut.CheckedChanged += cb30phut_CheckedChanged;
-                cb60phut.CheckedChanged += cb60phut_CheckedChanged;
-                cb120phut.CheckedChanged += cb120phut_CheckedChanged;
-            }
-        }
-        #endregion
     }
 }
