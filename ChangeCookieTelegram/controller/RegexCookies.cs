@@ -93,11 +93,7 @@ namespace ChangeCookieTelegram.controller
             {
                 return regexPokey(decodedUrl);
             }
-            if (type == "capybara")
-            {
-                return regexCapyBara(decodedUrl);
-            }
-
+            
             if (type == "rockyrabbit")
             {
                 return "tma " + decodedUrl;

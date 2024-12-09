@@ -23,22 +23,24 @@ namespace ChangeCookieTelegram.model
     public class BodyUpload_120
     {
         public object[] midas { get; set; }
-        public object[] rockyrabbit { get; set; }
-        public object[] tomarket { get; set; }
+        public object[] emio { get; set; }
+        public object[] dropee { get; set; }
         public object[] lumoz { get; set; }
         public object[] mozoai { get; set; }
         public object[] capybara { get; set; }
         public object[] banana { get; set; }
         public object[] iamdog { get; set; }
         public object[] won { get; set; }
-        public object[] vanilla { get; set; }
-        public object[] kaiaplay { get; set; }
+        public object[] frogfarm { get; set; }
+        public object[] sidekick { get; set; }
         public object[] blum { get; set; }
         public object[] matchquest { get; set; }
         public object[] major { get; set; }
         public object[] tsubasa { get; set; }
-        public object[] freedogs { get; set; }
+        public object[] memewar { get; set; }
         public object[] avacoin { get; set; }
+        public object[] moonhub { get; set; }
+        public object[] nodewars { get; set; }
     }
     
 }

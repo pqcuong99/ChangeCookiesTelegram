@@ -90,23 +90,25 @@ namespace ChangeCookieTelegram
         {
             try
             {
-                List<string> listRabbit = new List<string>();
+                List<string> listEmio = new List<string>();
                 List<string> listMidas = new List<string>();
-                List<string> listTomerket = new List<string>();
+                List<string> listDropee = new List<string>();
                 List<string> listLumoz = new List<string>();
                 List<string> listMozoAi = new List<string>();
                 List<string> listBanana = new List<string>();
                 List<string> listIamDog = new List<string>();
                 List<string> listWon = new List<string>();
-                List<string> listVanilla = new List<string>();
-                List<string> listKaiaPlay = new List<string>();
+                List<string> listFrogfarm = new List<string>();
+                List<string> listSideKick = new List<string>();
                 List<string> listBlum = new List<string>();
                 List<string> listMatchQuest = new List<string>();
                 List<string> listMajor = new List<string>();
                 List<string> listCapybara = new List<string>();
                 List<string> listTsubasa = new List<string>();
-                List<string> listFreedogs = new List<string>();
+                List<string> listMemewar = new List<string>();
                 List<string> listAvaCoin = new List<string>();
+                List<string> listMoonHub = new List<string>();
+                List<string> listNodeWars = new List<string>();
                 BodyUpload_120 body = new BodyUpload_120();
 
                 string path = txtPathFolder.Text.Trim();
@@ -134,17 +136,17 @@ namespace ChangeCookieTelegram
                     foreach (var line in arrayCookies)
                     {
                         var item = line.Trim().Split('|');
-                        if (item[0].Contains("rabbit"))
+                        if (item[0].Contains("emio"))
                         {
-                            listRabbit.Add(RegexCookies.RegexAuth(item[1].Trim(), "rockyrabbit"));
+                            listEmio.Add(RegexCookies.RegexAuth(item[1].Trim(), "emio"));
                         }
                         else if (item[0].Contains("midas"))
                         {
                             listMidas.Add(RegexCookies.RegexAuth(item[1].Trim(), "midas"));
                         }
-                        else if (item[0].Contains("tomerket"))
+                        else if (item[0].Contains("dropee"))
                         {
-                            listTomerket.Add(RegexCookies.RegexAuth(item[1].Trim(), "tomarket"));
+                            listDropee.Add(RegexCookies.RegexAuth(item[1].Trim(), "dropee"));
                         }
                         else if (item[0].Contains("lumoz"))
                         {
@@ -173,13 +175,13 @@ namespace ChangeCookieTelegram
                         {
                             listWon.Add(RegexCookies.RegexAuth(item[1].Trim(), "won"));
                         }
-                        else if (item[0].Contains("vanilla"))
+                        else if (item[0].Contains("frogfarm"))
                         {
-                            listVanilla.Add(RegexCookies.RegexAuth(item[1].Trim(), "vanilla"));
+                            listFrogfarm.Add(RegexCookies.RegexAuth(item[1].Trim(), "frogfarm"));
                         }
-                        else if (item[0].Contains("kaiaplay"))
+                        else if (item[0].Contains("sidekick"))
                         {
-                            listKaiaPlay.Add(RegexCookies.RegexAuth(item[1].Trim(), "kaiaplay"));
+                            listSideKick.Add(RegexCookies.RegexAuth(item[1].Trim(), "sidekick"));
                         }
                         else if (item[0].Contains("blum"))
                         {
@@ -195,32 +197,40 @@ namespace ChangeCookieTelegram
                         }else if (item[0].Contains("tsubasa"))
                         {
                             listTsubasa.Add(RegexCookies.RegexAuth(item[1].Trim(), "tsubasa"));
-                        }else if (item[0].Contains("freedogs"))
+                        }else if (item[0].Contains("memewar"))
                         {
-                            listFreedogs.Add(RegexCookies.RegexAuth(item[1].Trim(), "freedogs"));
+                            listMemewar.Add(RegexCookies.RegexAuth(item[1].Trim(), "memewar"));
                         }else if (item[0].Contains("avacoin"))
                         {
                             listAvaCoin.Add(RegexCookies.RegexAuth(item[1].Trim(), "avacoin"));
+                        }else if (item[0].Contains("moonhub"))
+                        {
+                            listMoonHub.Add(RegexCookies.RegexAuth(item[1].Trim(), "moonhub"));
+                        }else if (item[0].Contains("nodewars"))
+                        {
+                            listNodeWars.Add(RegexCookies.RegexAuth(item[1].Trim(), "nodewars"));
                         }
                     }
 
-                    body.rockyrabbit = listRabbit.ToArray();
+                    body.emio = listEmio.ToArray();
                     body.midas = listMidas.ToArray();
-                    body.tomarket = listTomerket.ToArray();
+                    body.dropee = listDropee.ToArray();
                     body.lumoz = listLumoz.ToArray();
                     body.mozoai = listMozoAi.ToArray();
                     body.capybara = listCapybara.ToArray();
                     body.banana = listBanana.ToArray();
                     body.iamdog = listIamDog.ToArray();
                     body.won = listWon.ToArray();
-                    body.vanilla = listVanilla.ToArray();
-                    body.kaiaplay = listKaiaPlay.ToArray();
+                    body.frogfarm = listFrogfarm.ToArray();
+                    body.sidekick = listSideKick.ToArray();
                     body.blum = listBlum.ToArray();
                     body.matchquest = listMatchQuest.ToArray();
                     body.major = listMajor.ToArray();
                     body.tsubasa = listTsubasa.ToArray();
-                    body.freedogs = listFreedogs.ToArray();
+                    body.memewar = listMemewar.ToArray();
                     body.avacoin = listAvaCoin.ToArray();
+                    body.moonhub = listMoonHub.ToArray();
+                    body.nodewars = listNodeWars.ToArray();
 
                     ApiController api = new ApiController();
                     string result = await api.PostUploadFile_120(body);
