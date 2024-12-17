@@ -236,6 +236,8 @@ namespace ChangeCookieTelegram
                 List<string> listMoonbix = new List<string>();
                 List<string> listFastmint = new List<string>();
                 List<string> listCoinsweeper = new List<string>();
+                List<string> listClayton = new List<string>();
+                List<string> listBird = new List<string>();
                 BodyUpload_30 body = new BodyUpload_30();
 
                 string path = txtPathFolder.Text.Trim();
@@ -262,6 +264,10 @@ namespace ChangeCookieTelegram
 
                     foreach (var line in arrayCookies)
                     {
+                        if (line.Contains("undefined"))
+                        {
+                            continue;
+                        }
                         var item = line.Trim().Split('|');
                         if (item[0].Contains("kuroro"))
                         {
@@ -286,6 +292,12 @@ namespace ChangeCookieTelegram
                         }else if (item[0].Contains("coinsweeper"))
                         {
                             listCoinsweeper.Add(RegexCookies.RegexAuth(item[1].Trim(), "coinsweeper"));
+                        }else if (item[0].Contains("clayton"))
+                        {
+                            listClayton.Add(RegexCookies.RegexAuth(item[1].Trim(), "clayton"));
+                        }else if (item[0].Contains("bird"))
+                        {
+                            listBird.Add(RegexCookies.RegexAuth(item[1].Trim(), "bird"));
                         }
                     }
 
@@ -296,6 +308,8 @@ namespace ChangeCookieTelegram
                     body.moonbix = listMoonbix.ToArray();
                     body.fastmint = listFastmint.ToArray();
                     body.coinsweeper = listCoinsweeper.ToArray();
+                    body.clayton = listClayton.ToArray();
+                    body.bird = listBird.ToArray();
                     
                     ApiController api = new ApiController();
                     string result = await api.PostUploadFile_30(body);
