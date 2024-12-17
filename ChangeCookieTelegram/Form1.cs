@@ -23,9 +23,18 @@ namespace ChangeCookieTelegram
         System.Threading.Timer timer;
         TimeSpan remainingTime = TimeSpan.FromMinutes(10);
         string type = "30phut";
+        string folderProfile = "";
         public Form1()
         {
             InitializeComponent();
+        }
+        public Form1(string dataSave)
+        {
+            InitializeComponent();
+            var data = dataSave.Split('|');
+            txtPathFolder.Text = data[0];
+            type = data[2] == "30" ? "30phut" : "120phut";
+            folderProfile = data[1];
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -37,6 +46,7 @@ namespace ChangeCookieTelegram
         {
             try
             {
+                StartDeleteFileDLB();
                 StartChange();
             }
             catch(Exception ex)
@@ -44,6 +54,48 @@ namespace ChangeCookieTelegram
 
             }
 
+        }
+        public void StartDeleteFileDLB()
+        {
+            LogMessage("------------- Check and Delete file DLB ----------");
+            if (!Directory.Exists(folderProfile))
+            {
+                return;
+            }
+            string[] subFolders = Directory.GetDirectories(folderProfile);
+            // Duyệt qua tất cả các thư mục con
+            foreach (var folder in subFolders)
+            {
+                string folderDefault = folder + "\\Default";
+                if(Directory.Exists(folderDefault + "\\IndexedDB"))
+                {
+                    string folderDB = folderDefault + "\\IndexedDB";
+                    string[] subFoldersDB = Directory.GetDirectories(folderDB);
+
+                    // Duyệt qua tất cả các thư mục con
+                    foreach (var itemDB in subFoldersDB)
+                    {
+                        if (itemDB.Contains("web.telegram.org"))
+                        {
+                            string[] dlbFiles = Directory.GetFiles(itemDB, "*.ldb");
+
+                            // Duyệt qua từng file .dlb và xóa
+                            foreach (var file in dlbFiles)
+                            {
+                                try
+                                {
+                                    LogMessage("Delete file: " + file, "success");
+                                    // Xóa file .dlb
+                                    File.Delete(file);
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         public  string TypeCheck()
         {
@@ -90,21 +142,25 @@ namespace ChangeCookieTelegram
         {
             try
             {
-                List<string> listRabbit = new List<string>();
+                List<string> listEmio = new List<string>();
                 List<string> listMidas = new List<string>();
-                List<string> listTomerket = new List<string>();
+                List<string> listDropee = new List<string>();
                 List<string> listLumoz = new List<string>();
                 List<string> listMozoAi = new List<string>();
                 List<string> listBanana = new List<string>();
                 List<string> listIamDog = new List<string>();
                 List<string> listWon = new List<string>();
-                List<string> listVanilla = new List<string>();
-                List<string> listKaiaPlay = new List<string>();
+                List<string> listFrogfarm = new List<string>();
+                List<string> listSideKick = new List<string>();
                 List<string> listBlum = new List<string>();
                 List<string> listMatchQuest = new List<string>();
                 List<string> listMajor = new List<string>();
                 List<string> listCapybara = new List<string>();
                 List<string> listTsubasa = new List<string>();
+                List<string> listMemewar = new List<string>();
+                List<string> listAvaCoin = new List<string>();
+                List<string> listMoonHub = new List<string>();
+                List<string> listNodeWars = new List<string>();
                 BodyUpload_120 body = new BodyUpload_120();
 
                 string path = txtPathFolder.Text.Trim();
@@ -132,17 +188,17 @@ namespace ChangeCookieTelegram
                     foreach (var line in arrayCookies)
                     {
                         var item = line.Trim().Split('|');
-                        if (item[0].Contains("rabbit"))
+                        if (item[0].Contains("emio"))
                         {
-                            listRabbit.Add(RegexCookies.RegexAuth(item[1].Trim(), "rockyrabbit"));
+                            listEmio.Add(RegexCookies.RegexAuth(item[1].Trim(), "emio"));
                         }
                         else if (item[0].Contains("midas"))
                         {
                             listMidas.Add(RegexCookies.RegexAuth(item[1].Trim(), "midas"));
                         }
-                        else if (item[0].Contains("tomerket"))
+                        else if (item[0].Contains("dropee"))
                         {
-                            listTomerket.Add(RegexCookies.RegexAuth(item[1].Trim(), "tomarket"));
+                            listDropee.Add(RegexCookies.RegexAuth(item[1].Trim(), "dropee"));
                         }
                         else if (item[0].Contains("lumoz"))
                         {
@@ -171,13 +227,13 @@ namespace ChangeCookieTelegram
                         {
                             listWon.Add(RegexCookies.RegexAuth(item[1].Trim(), "won"));
                         }
-                        else if (item[0].Contains("vanilla"))
+                        else if (item[0].Contains("frogfarm"))
                         {
-                            listVanilla.Add(RegexCookies.RegexAuth(item[1].Trim(), "vanilla"));
+                            listFrogfarm.Add(RegexCookies.RegexAuth(item[1].Trim(), "frogfarm"));
                         }
-                        else if (item[0].Contains("kaiaplay"))
+                        else if (item[0].Contains("sidekick"))
                         {
-                            listKaiaPlay.Add(RegexCookies.RegexAuth(item[1].Trim(), "kaiaplay"));
+                            listSideKick.Add(RegexCookies.RegexAuth(item[1].Trim(), "sidekick"));
                         }
                         else if (item[0].Contains("blum"))
                         {
@@ -193,24 +249,40 @@ namespace ChangeCookieTelegram
                         }else if (item[0].Contains("tsubasa"))
                         {
                             listTsubasa.Add(RegexCookies.RegexAuth(item[1].Trim(), "tsubasa"));
+                        }else if (item[0].Contains("memewar"))
+                        {
+                            listMemewar.Add(RegexCookies.RegexAuth(item[1].Trim(), "memewar"));
+                        }else if (item[0].Contains("avacoin"))
+                        {
+                            listAvaCoin.Add(RegexCookies.RegexAuth(item[1].Trim(), "avacoin"));
+                        }else if (item[0].Contains("moonhub"))
+                        {
+                            listMoonHub.Add(RegexCookies.RegexAuth(item[1].Trim(), "moonhub"));
+                        }else if (item[0].Contains("nodewars"))
+                        {
+                            listNodeWars.Add(RegexCookies.RegexAuth(item[1].Trim(), "nodewars"));
                         }
                     }
 
-                    body.rockyrabbit = listRabbit.ToArray();
+                    body.emio = listEmio.ToArray();
                     body.midas = listMidas.ToArray();
-                    body.tomarket = listTomerket.ToArray();
+                    body.dropee = listDropee.ToArray();
                     body.lumoz = listLumoz.ToArray();
                     body.mozoai = listMozoAi.ToArray();
                     body.capybara = listCapybara.ToArray();
                     body.banana = listBanana.ToArray();
                     body.iamdog = listIamDog.ToArray();
                     body.won = listWon.ToArray();
-                    body.vanilla = listVanilla.ToArray();
-                    body.kaiaplay = listKaiaPlay.ToArray();
+                    body.frogfarm = listFrogfarm.ToArray();
+                    body.sidekick = listSideKick.ToArray();
                     body.blum = listBlum.ToArray();
                     body.matchquest = listMatchQuest.ToArray();
                     body.major = listMajor.ToArray();
                     body.tsubasa = listTsubasa.ToArray();
+                    body.memewar = listMemewar.ToArray();
+                    body.avacoin = listAvaCoin.ToArray();
+                    body.moonhub = listMoonHub.ToArray();
+                    body.nodewars = listNodeWars.ToArray();
 
                     ApiController api = new ApiController();
                     string result = await api.PostUploadFile_120(body);
@@ -326,10 +398,14 @@ namespace ChangeCookieTelegram
         }
         public void ShowTimeOut(string time)
         {
-            Invoke(new MethodInvoker(() =>
+            try
             {
-                lbTime.Text = time;
-            }));
+                Invoke(new MethodInvoker(() =>
+                {
+                    lbTime.Text = time;
+                }));
+            }
+            catch(Exception ex) { }
         }
         public async Task<bool> IsCheckScheduleStatus()
         {
@@ -369,9 +445,6 @@ namespace ChangeCookieTelegram
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cb30phut.Checked = true;
-            cb60phut.Checked = false;
-            cb120phut.Checked = false;
             string pathLocal  = Directory.GetCurrentDirectory();
             string[] token = FileHelperController.ReadAllLines(pathLocal + "\\token.txt");
             ApiController.author = token[0];
@@ -412,75 +485,5 @@ namespace ChangeCookieTelegram
             rtcLog.ScrollToCaret();
         }
 
-        #region Xử lý sự kiện checkbox
-        private void cb30phut_CheckedChanged(object sender, EventArgs e)
-        {
-            cb30phut.CheckedChanged -= cb30phut_CheckedChanged;
-            cb60phut.CheckedChanged -= cb60phut_CheckedChanged;
-            cb120phut.CheckedChanged -= cb120phut_CheckedChanged;
-
-            try
-            {
-                // Thay đổi trạng thái của các checkbox
-                cb30phut.Checked = true;
-                cb60phut.Checked = false;
-                cb120phut.Checked = false;
-                type = "30phut";
-            }
-            finally
-            {
-                // Bật lại sự kiện CheckedChanged
-                cb30phut.CheckedChanged += cb30phut_CheckedChanged;
-                cb60phut.CheckedChanged += cb60phut_CheckedChanged;
-                cb120phut.CheckedChanged += cb120phut_CheckedChanged;
-            }
-        }
-
-        private void cb60phut_CheckedChanged(object sender, EventArgs e)
-        {
-            cb30phut.CheckedChanged -= cb30phut_CheckedChanged;
-            cb60phut.CheckedChanged -= cb60phut_CheckedChanged;
-            cb120phut.CheckedChanged -= cb120phut_CheckedChanged;
-
-            try
-            {
-                // Thay đổi trạng thái của các checkbox
-                cb30phut.Checked = false;
-                cb60phut.Checked = true;
-                cb120phut.Checked = false;
-                type = "60phut";
-            }
-            finally
-            {
-                // Bật lại sự kiện CheckedChanged
-                cb30phut.CheckedChanged += cb30phut_CheckedChanged;
-                cb60phut.CheckedChanged += cb60phut_CheckedChanged;
-                cb120phut.CheckedChanged += cb120phut_CheckedChanged;
-            }
-        }
-
-        private void cb120phut_CheckedChanged(object sender, EventArgs e)
-        {
-            cb30phut.CheckedChanged -= cb30phut_CheckedChanged;
-            cb60phut.CheckedChanged -= cb60phut_CheckedChanged;
-            cb120phut.CheckedChanged -= cb120phut_CheckedChanged;
-
-            try
-            {
-                // Thay đổi trạng thái của các checkbox
-                cb30phut.Checked = false;
-                cb60phut.Checked = false;
-                cb120phut.Checked = true;
-                type = "120phut";
-            }
-            finally
-            {
-                // Bật lại sự kiện CheckedChanged
-                cb30phut.CheckedChanged += cb30phut_CheckedChanged;
-                cb60phut.CheckedChanged += cb60phut_CheckedChanged;
-                cb120phut.CheckedChanged += cb120phut_CheckedChanged;
-            }
-        }
-        #endregion
     }
 }

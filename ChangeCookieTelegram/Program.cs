@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChangeCookieTelegram.view;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,10 @@ namespace ChangeCookieTelegram
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
+            Settings settings = new Settings();
+            settings.Show();
+            Application.Run(settings);
         }
     }
 }

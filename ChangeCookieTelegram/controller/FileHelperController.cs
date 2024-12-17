@@ -64,5 +64,64 @@ namespace ChangeCookieTelegram.controller
             {
             }
         }
+        
+        public static void WriteToFile(string filePath, string content)
+        {
+            try
+            {
+                // Kiểm tra xem file đã tồn tại chưa
+                if (File.Exists(filePath))
+                {
+                    // Nếu file tồn tại, xóa nội dung cũ
+                    File.WriteAllText(filePath, content);
+                }
+                else
+                {
+                    // Nếu file chưa tồn tại, tạo mới file và ghi nội dung
+                    File.WriteAllText(filePath, content);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public void DeleteDlbFilesInSubFolders(string inputFolder)
+        {
+            try
+            {
+                // Kiểm tra xem thư mục đầu vào có tồn tại không
+                if (!Directory.Exists(inputFolder))
+                {
+                    return;
+                }
+
+                // Lấy tất cả các thư mục con trong thư mục đầu vào
+                string[] subFolders = Directory.GetDirectories(inputFolder);
+
+                // Duyệt qua tất cả các thư mục con
+                foreach (var folder in subFolders)
+                {
+                    // Lấy tất cả các file có đuôi .dlb trong thư mục con
+                    string[] dlbFiles = Directory.GetFiles(folder, "*.dlb");
+
+                    // Duyệt qua từng file .dlb và xóa
+                    foreach (var file in dlbFiles)
+                    {
+                        try
+                        {
+                            // Xóa file .dlb
+                            File.Delete(file);
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }
