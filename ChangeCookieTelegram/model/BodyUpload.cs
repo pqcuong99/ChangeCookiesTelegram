@@ -15,6 +15,8 @@ namespace ChangeCookieTelegram.model
         public object[] moonbix { get; set; }
         public object[] fastmint { get; set; }
         public object[] coinsweeper { get; set; }
+        public object[] clayton { get; set; }
+        public object[] bird { get; set; }
     }
     public class BodyUpload_60
     {
