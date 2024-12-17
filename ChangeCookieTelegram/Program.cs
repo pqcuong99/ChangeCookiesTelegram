@@ -19,6 +19,10 @@ namespace ChangeCookieTelegram
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             Settings settings = new Settings();
+            settings.FormClosing += (sender, e) =>
+            {
+                Application.Exit(); // Đảm bảo ứng dụng kết thúc khi đóng form
+            };
             settings.Show();
             Application.Run(settings);
         }

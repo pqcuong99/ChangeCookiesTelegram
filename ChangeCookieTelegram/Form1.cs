@@ -161,6 +161,7 @@ namespace ChangeCookieTelegram
                 List<string> listAvaCoin = new List<string>();
                 List<string> listMoonHub = new List<string>();
                 List<string> listNodeWars = new List<string>();
+                List<string> listBitget = new List<string>();
                 BodyUpload_120 body = new BodyUpload_120();
 
                 string path = txtPathFolder.Text.Trim();
@@ -261,6 +262,9 @@ namespace ChangeCookieTelegram
                         }else if (item[0].Contains("nodewars"))
                         {
                             listNodeWars.Add(RegexCookies.RegexAuth(item[1].Trim(), "nodewars"));
+                        }else if (item[0].Contains("bitget"))
+                        {
+                            listBitget.Add(RegexCookies.RegexAuth(item[1].Trim(), "bitget"));
                         }
                     }
 
@@ -283,6 +287,7 @@ namespace ChangeCookieTelegram
                     body.avacoin = listAvaCoin.ToArray();
                     body.moonhub = listMoonHub.ToArray();
                     body.nodewars = listNodeWars.ToArray();
+                    body.bitget = listBitget.ToArray();
 
                     ApiController api = new ApiController();
                     string result = await api.PostUploadFile_120(body);

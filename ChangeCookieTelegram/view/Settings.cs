@@ -128,12 +128,16 @@ namespace ChangeCookieTelegram.view
 
         private void txtFileCookie_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
+        }
 
+        private void Settings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Đảm bảo khi đóng Settings thì ứng dụng sẽ kết thúc
+            Application.Exit();
         }
 
         private void cb30Minute_CheckedChanged(object sender, EventArgs e)

@@ -41,6 +41,7 @@ namespace ChangeCookieTelegram.model
         public object[] avacoin { get; set; }
         public object[] moonhub { get; set; }
         public object[] nodewars { get; set; }
+        public object[] bitget { get; set; }
     }
     
 }
