@@ -1,1 +1,1 @@
-F:\Game _Telegram\Tool-Change-csharp\ChangeCookiesTelegram\ChangeCookieTelegram\bin\Debug\UrlGameTele.txt|C:\Users\Xoai\AppData\Local\Temp\.hidemium\2239862f-4c70-4f42-9d28-8a3baee2185f|120
+D:\GameTele\ToolCsharp\ChangeCookiesTelegram\ChangeCookieTelegram\bin\Debug\UrlGameTele.txt|C:\Users\PC\AppData\Local\Temp\.hidemium\2239862f-4c70-4f42-9d28-8a3baee2185f|30
